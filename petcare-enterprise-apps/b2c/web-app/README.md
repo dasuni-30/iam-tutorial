@@ -31,7 +31,7 @@ Authorized redirect URLs: https://localhost:3000 (This will be updated with the 
 5. Click the **Protocol** tab.
 6. Scroll down to the **Allowed grant types** and tick **Refresh Token** and **Code**.
 7. Tick **Public client** on the next section.
-8. Use **Web App URL** in the step 3.3 as the **Authorized redirect URLs** and **Allowed origins**.
+8. Use **Web App URL** in the step 2.3 as the **Authorized redirect URLs** and **Allowed origins**.
 9. Keep the rest of the default configurations and click **Update**.
 10. Create `acr` claim from `User Attributes & Stores/Attributes section.
 11. Create a scope called `acr` and map it to the previously created `acr` claim.
@@ -231,11 +231,11 @@ Update the following configurations in the config.js file.
 
 &nbsp;<br>
 
-# Step 4: Create and publish a Service
+# Step 3: Create and publish a Service
 
 In this step, you will play the role of the API developer. You will create and publish the Service that the web application needs to consume. Before you proceed, sign in to [**Choreo Console**](https://console.choreo.dev/).
 
-## Step 4.1: Create the Service
+## Step 3.1: Create the Service
 
 Let's create your first Service.
 1. On the **Home** page, click on the project you created.
@@ -276,7 +276,7 @@ configurable string refreshUrl = ?;
 configurable string baseUrl = ?;
 ```
 
-## Step 4.2: Deploy the Service
+## Step 3.2: Deploy the Service
 
 For the Service to be invokable, you need to deploy it. To deploy the Service, follow the steps given below:
 1. Navigate to the **Choreo Console**. 
@@ -366,7 +366,7 @@ You will be viewing an overview of the Pet Management Service.
 4. Click **Next** on the **Defaultable Configurables** to deploy the service.
 5. Click **Deploy**.
 
-## Step 4.3: Update runtime settings
+## Step 3.3: Update runtime settings
 
 If you are not connecting the service to a MySQL database and storing the service's data in memory, then you must follow the steps below to ensure that only one container is running for the service.
 
@@ -374,7 +374,7 @@ If you are not connecting the service to a MySQL database and storing the servic
 2. Make the Min replicas and Max replicas count to **1** and click **Update**.
 3. Click **Redeploy Release** button.
 
-## Step 4.4: Update API settings
+## Step 3.4: Update API settings
 
 1. Navigate to the **Deploy** section in the component.
 2. Go to the Set Up card and click **Endpoint Configurations**. This opens the Endpoint Configurations pane.
@@ -383,7 +383,7 @@ If you are not connecting the service to a MySQL database and storing the servic
 Click Apply.
 5. To redeploy the component with the applied setting, go to the Set Up card and click Deploy.
 
-## Step 4.5: Test the Service
+## Step 3.5: Test the Service
 
 Let's test the Pet Management Service via Choreo's Console by following the steps given below:
 1. Navigate to the **Test** section in the component and click **Console**. This will open up the definition of the service.
@@ -409,7 +409,7 @@ Let's test the Pet Management Service via Choreo's Console by following the step
 5. Check the Server Response section. On successful invocation, you will receive the **201** HTTP code.
 Similarly, you can expand and try out the other methods.
 
-## Step 4.6: Publish the Service
+## Step 3.6: Publish the Service
 
 Now that yourService is tested, let's publish it and make it available for applications to consume.
 
@@ -419,9 +419,9 @@ Now that yourService is tested, let's publish it and make it available for appli
 4. The Pet Management Service will open in the Developer Portal.
 
 &nbsp;<br>
-# Step 5: Generate the keys and Create Connection between Web App and Service
+# Step 4: Generate the keys and Create Connection between Web App and Service
 
-## Step 5.1: Add Asgardeo as an Identity Provider in Choreo
+## Step 4.1: Add Asgardeo as an Identity Provider in Choreo
 
 1. Navigate to the **Pet Management App** in the Choreo console.
 2. Click **Settings** in the bottom of the side panel.
@@ -431,7 +431,7 @@ Now that yourService is tested, let's publish it and make it available for appli
 
 Now you have generated keys for the application.
 
-## Step 5.2: Create a connection between the web application and the deployed service
+## Step 4.2: Create a connection between the web application and the deployed service
 
 1. In the left navigation menu, click **Dependencies** and then click **Connections**.
 2. Click **+ Create**.
@@ -443,9 +443,9 @@ Now you have generated keys for the application.
 
 &nbsp;<br>
 
-# Step 6: Consume the Pet Management Application
+# Step 5: Consume the Pet Management Application
     
-1. Use **Web App URL** in **step 3.3** to access the Pet Management web application. 
+1. Use **Web App URL** in **step 2.3** to access the Pet Management web application. 
 
 ![Alt text](readme-resources/landing-page.png?raw=true "Landing Page")
 
@@ -500,22 +500,20 @@ When deploying the webhook through choreo, provide the salesforce related config
 2. Add the `Authorized redirect URLs` as `http://localhost:3000`.
 3. Go to the `Protocol` tab and copy the `Client ID`.
 4. Select `Access token` type as `JWT`.
-5. Click the **Protocol** tab.
-6. Scroll down to the **Allowed grant types** and tick **Refresh Token** and **Code**.
-7. Tick **Public client** on the next section.
-8. Use **Web App URL** in the step 3.3 as the **Authorized redirect URLs** and **Allowed origins**.
-9. Keep the rest of the default configurations and click **Update**.
-10. Create `acr` claim from `User Attributes & Stores/Attributes section.
-11. Create a scope called `acr` and map it to the previously created `acr` claim.
-12. Go to the **User Attributes** tab.
-13. Tick on the `acr`.
-14. Tick on the **Email** section.
-15. Expand the **Profile** section.
-16. Add a tick on the Requested Column for the **Full Name** and click **Update**.
-17. Then go to the **Sign-In Method** tab.
-18. Configure **Google login** as described in https://wso2.com/asgardeo/docs/guides/authentication/social-login/add-google-login/
-19. As shown in the below, add **Username & Password** as an **Authentication** step.
-20. To perform the acr-based step up authentication add the following conditional script to the login flow.
+5. Scroll down to the **Allowed grant types** and tick **Refresh Token** and **Code**.
+6. Tick **Public client** on the next section.
+7. Keep the rest of the default configurations and click **Update**.
+8. Create `acr` claim from `User Attributes & Stores/Attributes section.
+9. Create a scope called `acr` and map it to the previously created `acr` claim.
+10. Go to the **User Attributes** tab.
+11. Tick on the `acr`.
+12. Tick on the **Email** section.
+13. Expand the **Profile** section.
+14. Add a tick on the Requested Column for the **Full Name** and click **Update**.
+15. Then go to the **Sign-In Method** tab.
+16. Configure **Google login** as described in https://wso2.com/asgardeo/docs/guides/authentication/social-login/add-google-login/
+17. As shown in the below, add **Username & Password** as an **Authentication** step.
+18. To perform the acr-based step up authentication add the following conditional script to the login flow.
 
 ```
 // Define conditional authentication by passing one or many Authentication Context Class References 
@@ -557,7 +555,7 @@ var onLoginRequest = function (context) {
 };
 ```
 
-## Deploy the Front End Application
+## Run the Front End Application
 1. Navigate to <PROJECT_HOME>/petcare-enterprise-apps/b2c/web-app/public and update the configuration file 
    `config.js` with the registered app details.
    
