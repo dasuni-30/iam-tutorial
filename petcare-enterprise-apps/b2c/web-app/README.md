@@ -123,7 +123,7 @@ var onLoginRequest = function (context) {
 1. On the Asgardeo Console, go to Events.
 2. Select the `Add user event` to publish to Choreo and click Update.
 ![alt text](https://wso2.com/asgardeo/docs/assets/img/guides/asgardeo-events/asgardeo-events-ui.png)
-3. Configure choreo webhook for [Asgardeo user registration event](https://wso2.com/asgardeo/docs/guides/asgardeo-events/#implement-business-use-cases-for-asgardeo-events). Use [asgardeo_registration_webhook](https://github.com/wso2/samples-is/tree/master/petcare-sample/b2c/web-app/petdesk/webhooks/asgardeo_registration_webhook).
+3. Configure choreo webhook for [Asgardeo user registration event](https://wso2.com/asgardeo/docs/guides/asgardeo-events/#implement-business-use-cases-for-asgardeo-events). Use [asgardeo registration webhook](/petcare-enterprise-apps/b2c/webhooks/asgardeo_registration_webhook/).
 
 When deploying the webhook through choreo, provide the salesforce related configuration by getting them using this [guide](#setup-salesforce-account-guide).
     
@@ -153,10 +153,10 @@ In this step, you are going to deploy the pet management front-end application i
     | Field | Value |
     | -------- | -------- |
     | GitHub Account | Your account |
-    | GitHub Repository | samples-is |
+    | GitHub Repository | iam-tutorial |
     | Branch | main |
     | Build Preset | Click **React SPA** since the frontend is a React application built with Vite |
-    | Build Context Path | /petcare-sample/b2c/web-app/petdesk/web/react |
+    | Build Context Path | /petcare-enterprise-apps/b2c/web-app |
     | Build Command | npm install && npm run build|
     | Build Output |/build|
     | Node Version |18|
@@ -190,8 +190,8 @@ window.config = {
     scope: ["openid", "email", "profile"]
     myAccountAppURL: "<my-account-url>",
     enableOIDCSessionManagement: true
-    };
-   ```
+};
+```
 
 4. Click **Next**
 5. Keep the other configurations as default.
@@ -199,12 +199,11 @@ window.config = {
 7. When the application is deployed successfully you will get an url in the section **Web App URL**. Copy the **Web App URL**.
 8. Click the **Manage Configs & Secrets** on the bottom of the deployment card.
 9. On the Config-file you created, click the **edit icon** on the right side corner.
-10. Update the file mount path to **/usr/share/nginx/html/config.js**
-11. Copy and paste the **Web App URL** as the **signInRedirectURL** and **signOutRedirectURL** in the config.js file mount.
-12. Click **Save**.
-13. Navigate to **Asgardeo** console. 
-14. Click Applications and open the `Pet Management App`.
-15. Navigate to Protocol tab
+10. Copy and paste the **Web App URL** as the **signInRedirectURL** and **signOutRedirectURL** in the config.js file mount.
+11. Click **Save**.
+12. Navigate to **Asgardeo** console. 
+13. Click Applications and open the `Pet Management App`.
+14. Navigate to Protocol tab
 15. Add the same **Web App URL** to **Authorized redirect URLs** and **Allowed origins**.
 
 
@@ -250,22 +249,22 @@ Let's create your first Service.
     | Description | Manage your pets |
 
 5. To allow Choreo to connect to your GitHub account, click **Authorize with GitHub**.
-6. If you have not already connected your GitHub repository to Choreo, enter your GitHub credentials, and select the repository you created by forking https://github.com/wso2/samples-is to install the Choreo GitHub App.
+6. If you have not already connected your GitHub repository to Choreo, enter your GitHub credentials, and select the repository you created to install the Choreo GitHub App.
 7. In the Connect Repository dialog box, enter the following information:
 
     | Field | Value |
     | -------- | -------- |
     | GitHub Account | Your account |
-    | GitHub Repository | samples-is|
-    | Branch | master |
+    | GitHub Repository | iam-tutorial |
+    | Branch | main |
     | Build Preset | Click **Ballerina** because you are creating the REST API from a Ballerina project and Choreo needs to run a Ballerina build to build it. |
-    | Path | /petcare-sample/b2c/web-app/petdesk/apis/ballerina/pet-management-service |
+    | Path | petcare-enterprise-apps/b2c/apis/ballerina/pet-management-service |
 
 8. Click **Create** to initialize a Service with the implementation from your GitHub repository.
 
 The Service opens on a separate page where you can see its overview.
 
-Similarly setup the `/petcare-sample/b2c/web-app/petdesk/apis/ballerina/billing-management-service` and `/petcare-sample/b2c/web-app/petdesk/apis/ballerina/salesforce-integration-service` as choreo services. 
+Similarly setup the `/petcare-enterprise-apps/b2c/apis/ballerina/billing-management-service` and `/petcare-enterprise-apps/b2c/apis/ballerina/salesforce-integration-service` as choreo services. 
 
 When setting up `salesforce-integration-service`, get the following credentials by setting up the salesforce account using this [guide](#setup-salesforce-account-guide). Following configurations will be asked when deploying the service through choreo.
 
@@ -491,8 +490,7 @@ Now you have generated keys for the application.
 ## Prerequisites:
 1. Install Ballerina 2201.5.0 https://dist.ballerina.io/downloads/2201.5.0/ballerina-2201.5.0-swan-lake-macos-arm-x64.pkg
 2. Install Node 16 LTS (Tested in v16.13.0).
-3. Clone https://github.com/wso2/samples-is and the sample will be in the petcare-sample/b2c directory.
-4. Configure choreo webhook for [Asgardeo user registration event](https://wso2.com/asgardeo/docs/guides/asgardeo-events/#implement-business-use-cases-for-asgardeo-events). Use [asgardeo_registration_webhook](https://github.com/wso2/samples-is/tree/master/petcare-sample/b2c/web-app/petdesk/webhooks/asgardeo_registration_webhook).
+3. Configure choreo webhook for [Asgardeo user registration event](https://wso2.com/asgardeo/docs/guides/asgardeo-events/#implement-business-use-cases-for-asgardeo-events). Use [asgardeo_registration_webhook](/petcare-enterprise-apps/b2c/webhooks/asgardeo_registration_webhook/).
 
 When deploying the webhook through choreo, provide the salesforce related configuration by getting them using this [guide](#setup-salesforce-account-guide).
 
@@ -560,21 +558,24 @@ var onLoginRequest = function (context) {
 ```
 
 ## Deploy the Front End Application
-1. Navigate to <PROJECT_HOME>/petcare-sample/b2c/web-app/petdesk/web/react/public and update the configuration file 
+1. Navigate to <PROJECT_HOME>/petcare-enterprise-apps/b2c/web-app/public and update the configuration file 
    `config.js` with the registered app details.
    
-   ```
-    baseUrl: "https://localhost:9443",
-    clientID: "<CONFIGURED_SPA_CLIENT_ID>",
-    signInRedirectURL: "http://localhost:3000",
-    signOutRedirectURL: "http://localhost:3000",
-    petManagementServiceURL: "http://localhost:9090",
-    billingServerURL: "http://localhost:9091",
-    salesforceServerURL: "http://localhost:9092",
+```
+window.config = {
+    baseUrl: "https://api.asgardeo.io/t/<your-org-name>",
+    clientID: "<asgardeo-client-id>",
+    signInRedirectURL: "<web-app-url>",
+    signOutRedirectURL: "<web-app-url>",
+    petManagementServiceURL: "<pet-management-service-url>",
+    billingServerURL: "<billing-service-url>",
+    salesforceServerURL: "<sales-force-service-url>",
     scope: ["openid", "email", "profile"]
     myAccountAppURL: "<my-account-url>",
     enableOIDCSessionManagement: true
-   ```
+};
+```
+
 2. Run the application by executing the following command in the terminal.
     ```
     npm install
@@ -583,17 +584,17 @@ var onLoginRequest = function (context) {
 3. Visit the sample application at http://localhost:3000. 
 
 ## Run API Services
-1. Navigate to <PROJECT_HOME>/petcare-sample/b2c/web-app/petdesk/apis/ballerina/pet-management-service and start the 
+1. Navigate to <PROJECT_HOME>/petcare-enterprise-apps/b2c/apis/ballerina/pet-management-service and start the 
    pet management service by executing the following command in the terminal.
     ```
     bal run
     ```
-2. Navigate to <PROJECT_HOME>/petcare-sample/b2c/web-app/petdesk/apis/ballerina/billing-management-service and start the 
+2. Navigate to <PROJECT_HOME>/petcare-enterprise-apps/b2c/apis/ballerina/billing-management-service and start the 
    pet management service by executing the following command in the terminal.
     ```
     bal run
     ```
-3. Navigate to <PROJECT_HOME>/petcare-sample/b2c/web-app/petdesk/apis/ballerina/salesforce-integration-service and provide following configurations.
+3. Navigate to <PROJECT_HOME>/petcare-enterprise-apps/b2c/apis/ballerina/salesforce-integration-service and provide following configurations.
 
 ```config
 // Create Salesforce client configuration by reading from environment.
@@ -656,7 +657,7 @@ Then start the
     
     
 > [!NOTE]
-> By default, the service stores the data in memory. It can be connected to a MySQL database. Create a `Config.toml` file in the root folder of the service component and add the relevant DB configurations to the `Config.toml` files. Create MySQL database tables using the schemas located in `<PROJECT_HOME>/petcare-sample/b2c/web-app/petdesk/dbscripts directory`.
+> By default, the service stores the data in memory. It can be connected to a MySQL database. Create a `Config.toml` file in the root folder of the service component and add the relevant DB configurations to the `Config.toml` files. Create MySQL database tables using the schemas located in `<PROJECT_HOME>/petcare-enterprise-apps/b2c/dbscripts directory`.
 
 ```
 dbHost = "<DB_HOST>" 
